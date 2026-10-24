@@ -1,0 +1,341 @@
+/* White Mochi — Dough V2 Rampage */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #100b1c;
+  --panel: #1b1230;
+  --panel-light: #281942;
+  --purple: #a855f7;
+  --purple-bright: #d8a2ff;
+  --pink: #ff71d1;
+  --white: #f7f1ff;
+  --muted: #b7a9cc;
+  --green: #5df5a5;
+  --red: #ff5577;
+  --blue: #5ddcff;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 16px 40px;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at top, #32174e 0%, transparent 50%),
+    linear-gradient(135deg, #0b0814, var(--bg) 55%, #180d29);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+button {
+  color: var(--white);
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid #67428b;
+  border-radius: 10px;
+  padding: 10px 15px;
+  background: linear-gradient(135deg, #422360, #28163f);
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    filter 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  border-color: var(--purple-bright);
+  filter: brightness(1.18);
+  box-shadow: 0 0 16px #a855f733;
+}
+
+button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 3px;
+}
+
+.shell {
+  width: min(100%, 1000px);
+  margin: 0 auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 1.15;
+  color: #fff;
+  text-shadow:
+    0 0 12px #c084fc99,
+    0 0 30px #9333ea55;
+}
+
+.topbar h1 span {
+  color: var(--purple-bright);
+}
+
+#restartBtn {
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #7137a4, #49216f);
+  border-color: #bd85ef;
+  font-weight: 700;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.hud > div {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #49305f;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #25183b, #170f26);
+  box-shadow: inset 0 1px #ffffff08;
+}
+
+.hud strong,
+.hud span {
+  display: block;
+}
+
+.hud strong {
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.hud span {
+  overflow-wrap: anywhere;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.bar {
+  width: 100%;
+  height: 8px;
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #0b0712;
+  border: 1px solid #ffffff12;
+}
+
+.bar > div {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.2s ease;
+}
+
+#healthBar {
+  background: linear-gradient(90deg, #ff3864, #ff8a9e);
+  box-shadow: 0 0 10px #ff386466;
+}
+
+#energyBar {
+  background: linear-gradient(90deg, #8b5cf6, #df9cff);
+  box-shadow: 0 0 10px #a855f766;
+}
+
+#hakiText {
+  color: var(--purple-bright);
+}
+
+.arena {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 2px solid #69428e;
+  border-radius: 16px;
+  background: #100b1b;
+  box-shadow:
+    0 0 0 4px #a855f70a,
+    0 0 35px #8b5cf633,
+    0 18px 55px #00000066;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  background: #120d20;
+  cursor: crosshair;
+}
+
+#toast {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  z-index: 2;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 10px 16px;
+  border: 1px solid #d8a2ff88;
+  border-radius: 10px;
+  color: #fff;
+  background: #241337eF;
+  box-shadow: 0 0 24px #a855f733;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+
+.controls,
+.upgrades {
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid #49305f;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #20152f, #150e22);
+  box-shadow: 0 10px 30px #00000022;
+}
+
+.controls h2,
+.upgrades h2 {
+  margin: 0 0 12px;
+  color: var(--purple-bright);
+  font-size: 17px;
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.control-grid > div {
+  padding: 10px 12px;
+  border: 1px solid #3c2a50;
+  border-radius: 9px;
+  background: #130c20;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 24px;
+  margin-right: 4px;
+  padding: 2px 6px;
+  border: 1px solid #78519b;
+  border-radius: 5px;
+  color: #fff;
+  background: #352046;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.upgrade-grid button {
+  min-height: 76px;
+  text-align: left;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.upgrade-grid button span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#damageBtn {
+  border-color: #bd85ef;
+}
+
+#healthBtn {
+  border-color: #ff718c;
+}
+
+#energyBtn {
+  border-color: #5ddcff;
+}
+
+#upgradeMessage {
+  min-height: 20px;
+  margin: 12px 0 0;
+  color: var(--green);
+  font-size: 13px;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 16px 10px 28px;
+  }
+
+  .hud {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .control-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .topbar h1 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 440px) {
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .topbar h1 {
+    font-size: 21px;
+  }
+
+  #restartBtn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .hud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .control-grid,
+  .upgrade-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .controls,
+  .upgrades {
+    padding: 13px;
+  }
+}
