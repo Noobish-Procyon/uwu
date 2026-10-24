@@ -1,0 +1,176 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d1b">
+
+  <title>White Mochi — Dough V2 Rampage</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="shell">
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">MOCHI AWAKENING</p>
+        <h1>White Mochi <span>— Dough V2 Rampage</span></h1>
+      </div>
+
+      <button id="restartBtn" class="restart">
+        Restart run
+      </button>
+    </header>
+
+    <section class="hud" aria-label="Player status">
+
+      <div class="stat">
+        <div class="stat-head">
+          <span>HEALTH</span>
+          <strong id="healthText">100 / 100</strong>
+        </div>
+        <div class="meter">
+          <div id="healthBar" class="fill health"></div>
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-head">
+          <span>ENERGY</span>
+          <strong id="energyText">100 / 100</strong>
+        </div>
+        <div class="meter">
+          <div id="energyBar" class="fill energy"></div>
+        </div>
+      </div>
+
+      <div class="mini-stat">
+        <span>ROOM</span>
+        <strong id="roomText">1</strong>
+      </div>
+
+      <div class="mini-stat">
+        <span>COINS</span>
+        <strong id="coinText">0</strong>
+      </div>
+
+      <div class="mini-stat">
+        <span>HAKI</span>
+        <strong id="hakiText">OFF</strong>
+      </div>
+
+    </section>
+
+    <section class="game-wrap">
+      <canvas
+        id="game"
+        width="800"
+        height="500"
+        aria-label="Mochi combat game"
+      ></canvas>
+
+      <div id="toast" class="toast" role="status">
+        Defeat every enemy to open the portal!
+      </div>
+    </section>
+
+    <section class="bottom">
+
+      <div class="controls">
+        <h2>Controls</h2>
+
+        <div class="keygrid">
+          <div>
+            <kbd>W A S D</kbd>
+            <span>Move</span>
+          </div>
+
+          <div>
+            <kbd>Mouse</kbd>
+            <span>Aim</span>
+          </div>
+
+          <div>
+            <kbd>Click</kbd>
+            <span>Trident slash</span>
+          </div>
+
+          <div>
+            <kbd>Z</kbd>
+            <span>Mochi fist</span>
+          </div>
+
+          <div>
+            <kbd>X</kbd>
+            <span>Homing mochi</span>
+          </div>
+
+          <div>
+            <kbd>C</kbd>
+            <span>Frozen mochi floor</span>
+          </div>
+
+          <div>
+            <kbd>B</kbd>
+            <span>Dough string slam</span>
+          </div>
+
+          <div>
+            <kbd>Hold V</kbd>
+            <span>Doughnut portal fists</span>
+          </div>
+
+          <div>
+            <kbd>T</kbd>
+            <span>Toggle Haki</span>
+          </div>
+
+          <div>
+            <kbd>Walk in</kbd>
+            <span>Enter room portal</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="upgrade">
+        <h2>Battle upgrades</h2>
+
+        <p>
+          Spend coins between rooms to improve your mochi powers.
+        </p>
+
+        <button id="damageBtn">
+          Damage boost
+          <span>8 coins</span>
+        </button>
+
+        <button id="healthBtn">
+          Max health +20
+          <span>8 coins</span>
+        </button>
+
+        <button id="energyBtn">
+          Energy +25
+          <span>5 coins</span>
+        </button>
+
+        <p id="upgradeMessage" class="upgrade-message">
+          Defeat enemies to earn coins.
+        </p>
+      </aside>
+
+    </section>
+
+    <footer>
+      Made with HTML Canvas, CSS and JavaScript.
+      No libraries or build step required.
+    </footer>
+
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
